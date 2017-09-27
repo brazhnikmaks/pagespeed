@@ -1,0 +1,85 @@
+.placeholder {
+	color:       #b3b3b3;
+	font-size:   13px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+:-moz-placeholder {
+	color:       #b3b3b3;
+	font-size:   13px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+::-webkit-input-placeholder {
+	color:       #b3b3b3;
+	font-size:   13px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+textarea::-moz-placeholder {
+	color:       #b3b3b3;
+	font-size:   13px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+textarea::-webkit-input-placeholder {
+	color:       #b3b3b3;
+	font-size:   13px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+:-ms-input-placeholder {
+	color:       #b3b3b3;
+	font-size:   13px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.transitionmyl {
+	-moz-transition:    all 0.5s ease-out;
+	-o-transition:      all 0.5s ease-out;
+	-webkit-transition: all 0.5s ease-out;
+}
+
+.transitionmyl1 {
+	-moz-transition:    transform 0.5s ease-out;
+	-o-transition:      transform 0.5s ease-out;
+	-webkit-transition: transform 0.5s ease-out;
+}
+
+select,
+input,
+textarea {
+	font-family: "Roboto", sans-serif !important;
+}
+
+ form input,
+ form select,
+ form textarea {
+	width:            100%;
+	background-color: #fff;
+	color:            #000 !important;
+	height:           31px;
+	font-size:        16px;
+	border:           1px solid #d5dde9;
+}
+
+ form .zbtn {
+	width:                 250px;
+	margin:                0 auto;
+	background:            -webkit-linear-gradient(#e52454, #c40736);
+	background:            -o-linear-gradient(#e52454, #c40736);
+	background:            -moz-linear-gradient(#e52454, #c40736);
+	background:            linear-gradient(#e52454, #c40736);
+	height:                55px;
+	border:                1px solid #eb6672;
+	position:              relative;
+	color:                 #fff;
+	font-size:             22px;
+	font-weight:           700;
+	text-align:            center;
+	line-height:           55px;
+	text-transform:        uppercase;
+	-webkit-border-radius: 8px;
+	-moz-border-radius:    8px;
+	border-radius:         8px;
+}

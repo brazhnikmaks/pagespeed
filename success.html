@@ -1,370 +1,137 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-	<title>Grazie</title>
-	<style>
-		/* ======= Add Fonts ========== */
-		@font-face {
-		    font-family: 'OpenSans-Bold';
-		    src: url('./thx/fonts/OpenSans-Bold.woff2') format('woff2'),  url('./thx/fonts/OpenSans-Bold.woff') format('woff');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		@font-face {
-		    font-family: 'OpenSans-Regular';
-		    src: url('./thx/fonts/OpenSans-Regular.woff2') format('woff2'),  url('./thx/fonts/OpenSans-Regular.woff') format('woff');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		@font-face {
-		    font-family: 'OpenSans-Semibold';
-		    src: url('./thx/fonts/OpenSans-Semibold.woff2') format('woff2'),  url('./thx/fonts/OpenSans-Semibold.woff') format('woff');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		/* ============================ */
-		* {
-			margin: 0;
-			padding: 0;
-			border: 0;
-			outline: 0;
-		}
-		body {
-			overflow: hidden;
-		}
-		:focus {
-			outline: 0;
-		}
-		header {
-			text-align: center;
-		}
-		header h1 {
-			color: #0883b0;
-			font-family: 'OpenSans-Bold', sans-serif;
-			font-size: 50px;
-			margin: 25px 0 30px;
-		}
-		header p {
-			color: #737373;
-			font-size: 16px;
-			margin-bottom: 10px;
-		}
-		header .order { font-family: 'OpenSans-Semibold', sans-serif; }
-		header .feedback { font-family: 'OpenSans-Regular', sans-serif; }
-		.content_wrap {
-			background-image: url('./thx/img/bg.jpg');
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center top;
-			color: #fff;
-			height: 519px;
-			position: relative;
-		}
-		.content_wrap .desk-bg {
-			height: 519px;
-			margin: 0 auto;
-			position: relative;
-		}
-		.content_wrap .content__data {
-			position: absolute;
-			left: 42%;
-			top: 75px;
-			z-index: 1;
-		}
-		.content_wrap .content__title {
-			font-size: 48px;
-			text-transform: uppercase;
-			text-shadow: 0 4px 2px rgba(0,0,0,.3);
-			margin-bottom: 10px;
-			max-width: 640px;
-			font-family: 'OpenSans-Bold', sans-serif;
-		}
-		.content_wrap .content__list {
-			padding-left: 0;
-			list-style: none;
-			display: inline-block;
-		}
-		.content_wrap .content__list li {
-			padding: 10px 0;
-			font-size: 16px;
-			font-family: 'OpenSans-Semibold', sans-serif;
-		}
-		.content_wrap .content__list li:not(:last-child) {
-			border-bottom: 1px solid #fff;
-		}
-		.content_wrap form {
-			padding: 15px 0 25px;
-		}
-		.content_wrap form input {
-			height: 40px;
-			border-radius: 4px;
-			outline: 0;
-			color: #818181;
-			font-size: 14px;
-			padding: 0 15px;
-			max-width: 360px;
-			width: 100%;
-			border: 1px solid transparent;
-			transition: box-shadow .3s, color .3s, border .3s;
-			margin-right: 20px;
-			box-shadow: 6px 8px 30px rgba(0,0,0,.3);
-		}
-		.content_wrap form input[data-error] {
-			box-shadow: 6px 8px 30px rgba(255,0,0,.7);
-			border-color: red;
-			color: red;
-		}
-		.content_wrap form input[data-success] {
-			box-shadow: 0 0 15px rgb(66,204,255);
-			border-color: rgb(66,204,255);
-		}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		/* Button styles */
-.button { display: inline-block; text-align: center; border: 2px solid #d05800; -webkit-border-radius: 4px; border-radius: 4px; width: 180px; height: 42px; background-color: #ffd800; background-image: -webkit-gradient(linear, left top, left bottom, from(#ffd800), to(#ff5a00)); background-image: -webkit-linear-gradient(#ffd800, #ff5a00); background-image: -o-linear-gradient(#ffd800, #ff5a00); background-image: linear-gradient(#ffd800, #ff5a00); position: relative; top: 1px; text-transform: uppercase; color: #fff; font-family: "Open Sans", sans-serif; font-weight: 600; font-size: 17px; cursor: pointer; }
-.button__ico-animete { background: url("./thx/img/btn.png") no-repeat -180px 0; display: inline-block; width: 2px; height: 3px; padding-top: 4px; -webkit-transition: width 0.5s; -o-transition: width 0.5s; transition: width 0.5s; margin-left: 3px; }
-.button__ico { display: inline-block; width: 6px; height: 11px; background: url("./thx/img/btn.png") no-repeat 0 0; margin-left: -5px; }
-.button_small { width: 138px; font-size: 14px; padding: 8px 0; line-height: 17px; }
-@media only screen and (min-width: 992px) { 
-	.button:hover { background: #ff4800; }
-	.button:hover .button__ico-animete { width: 15px; background: url("./thx/img/btn.png") no-repeat -180px 0; -webkit-transition: width 0.5s; -o-transition: width 0.5s; transition: width 0.5s; } .e-list { display: none; } }
-		/* ============= */
+  <title>Grazie!</title>
 
-		.content_wrap form .submit-btn .arrow {
-			position: relative;
-			top: 1px;
-			margin-left: 10px;
-		}
-		.content_wrap .footer-content {
-			margin-top: 35px;
-		}
-		.content_wrap .footer-content img {
-			margin-right: 20px;
-		}
+  <style>
+    html,
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-		/* ===================== Modal styles ====================== */
-		@keyframes showModal {
-			from { background-color: transparent; }
-			to { background-color: rgba(255,255,255,.8); }
-		}
-		@keyframes showModalContent {
-			0% {
-				opacity: .1;
-				transform: translate(-50%, -50%) scale(0);
-			}
-			80% {
-				transform: translate(-50%, -50%) scale(1.1);
-			}
-			100% {
-				opacity: 1;
-				transform: translate(-50%, -50%) scale(1);
-				visibility: visible;
-			}
-		}
-		.modal {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 100;
-			width: 100%;
-			background-color: rgba(255,255,255,.8);
-			animation: showModal .5s;
-		}
-		.modal.hidden {
-			display: none;
-		}
-		.modal .modal__content {
-			position: fixed;
-			visibility: hidden;
-			top: 35%;
-			left: 50%;
-			max-width: 320px;
-			font-family: 'OpenSans-Regular', sans-serif;
-			z-index: 101;
-			padding: 40px 30px 50px;
-			background-color: #fff;
-			border-radius: 6px;
-			box-shadow: 0 4px 30px rgba(0,0,0,.3);
-			transform: translate(-50%, -50%) scale(1);
-			text-align: center;
-			animation: showModalContent .4s ease .5s;
-			animation-fill-mode: forwards;
-		}
-		.modal .modal__content h1 {
-			font-size: 50px;
-			color: #0883b0;
-			margin-bottom: 50px;
-		}
-		.modal .modal__content p, .modal .modal__content output {
-			font-size: 16px;
-			line-height: 30px;
-		}
-		.modal .modal__content output {
-			color: #0883b0;
-			display: block;
-		}
-		.modal .modal__content output, .modal.visible .modal__content .backToLanding {
-			font-family: 'OpenSans-Bold', sans-serif;
-		}
-		.modal .modal__content .backToLanding {
-			width: 160px;
-			height: 38px;
-			margin: 0 auto;
-			margin-top: 100px;
-			border: 2px solid #cdcdcd;
-			background-color: #fff;
-			border-radius: 4px;
-			text-transform: uppercase;
-			font-size: 14px;
-			color: #8e8e8e;
-			cursor: pointer;
-			transition: background-color .3s, color .3s;
-		}
-		.modal .modal__content .backToLanding:hover {
-			background-color: #0883b0;
-			color: #fff;
-			border-color: #0883b0;
-		}
-		@media only screen and (max-width: 480px) {
-			.modal .modal__content {
-				top: 50%;
-				max-width: 260px;
-				width: 100%;
-				padding: 20px 15px 30px;
-			}
-			.modal .modal__content h1 {
-				font-size: 40px;
-			}
-		}
-		/* ========================================================== */
+    html,
+    body,
+    h2,
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
 
-		@media only screen and (min-width: 1921px){
-			.content_wrap {
-				background-size: contain;
-			}
-		}
-		
-		@media only screen and (max-width: 1200px) {
-	        .content_wrap .content__data form input {
-	        	max-width: 250px;
-	        }
-	        .content_wrap .content__title {
-	        	font-size: 40px;
-	        }
-	        .content_wrap .footer-content {
-	        	margin-top: 40px;
-	        }
-	    }
-	    @media only screen and (max-width: 992px) {
-	    	body {
-	    		overflow: auto;
-	    	}
-			.content_wrap .content__data {
-	        	left: auto;
-	        	right: 20px;
-	        }
-	        .content_wrap .content__title {
-	        	max-width: 525px;
-	        }
-	    }
-	    @media only screen and (max-width: 767px) {
-	    	header {
-	    		margin-bottom: 0;
-	    		padding: 0 20px;
-	    	}
-	    	header h1 {
-	    		font-size: 30px;
-	    		margin: 15px 0;
-	    	}
-	    	header .order, header .feedback {
-	    		font-size: 14px;
-	    	}
-	    	.content_wrap .content__title {
-	    		padding: 0 20px;
-	    		margin: 0 auto 20px;
-	    		font-size: 24px;
-	    		text-align: center;
-	    	}
-	    	.content_wrap form input {
-	    		display: block;
-	    		margin: 0 auto 20px;
-	    	}
-	    	.content_wrap {
-				background-image: url('./thx/img/main_bg.png');
-				text-align: center;
-			}
-			.content_wrap .content__data {
-				top: 340px;
-				left: 0;
-				right: 0;
-	        }
-	        .mob-bg {
-	        	background-color: #27acd7;
-	        }
-	        .content_wrap .footer-content {
-	        	position: absolute;
-	        	margin-top: 20px;
-	        	padding-bottom: 35px;
-	        	left: 50%;
-	        	transform: translate3d(-50%, 0, 0)
-	        }
-	        .content_wrap .content__list {
-	        	padding: 10px 20px 0;
-	        }
-	        .content_wrap .footer-content img {
-	        	margin: 0 10px;
-	        }
-	    }
-	    @media only screen and (max-width: 480px) {
-	    	.content_wrap {
-	    		height: 420px;
-	    	}
-			.content_wrap .footer-content {
-				width: 100%;
-			}
-			.content_wrap .content__data {
-				top: 230px;
-			}
-	    }
-	</style>
+    .page {
+      width: 100%;
+      background-color: #fff;
+      min-height: 374px;
+      position: relative;
+    }
+
+    .message {
+      width: 884px;
+      border: 6px solid #fcc92f;
+      position: relative;
+      text-align: center;
+      padding: 36px 32px 30px;
+      margin: 68px auto 20px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      color: #fa501e;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 25px;
+      line-height: 58px;
+    }
+
+    h3 {
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 36px;
+    }
+
+    .btn-back {
+      display: block;
+      width: 200px;
+      line-height: 35px;
+      color: #000 !important;
+      padding: 5px 10px;
+      background-color: #f4f4f4;
+      -moz-box-shadow: 0px 4px 0px #fa501e;
+      -webkit-box-shadow: 0px 4px 0px #fa501e;
+      box-shadow: 0px 4px 0px #fa501e;
+      border: none;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      cursor:pointer;
+      -webkit-transition: all linear 0.3s;
+      -moz-transition: all linear 0.3s;
+      -ms-transition: all linear 0.3s;
+      -o-transition: all linear 0.3s;
+      transition: all linear 0.3s;
+      outline:none;
+      margin: 34px auto 0;
+      font-size: 14px;
+      text-decoration: none !important;
+    }
+
+    .btn-back:hover {
+      background-color: #dedede;
+      -webkit-transition: none;
+      -moz-transition: none;
+      -ms-transition: none;
+      -o-transition: none;
+      transition: none;
+    }
+
+    .btn-back:active {
+      position: relative;
+      top: 3px;
+      -moz-box-shadow: 0px 1px 0px #fa501e;
+      -webkit-box-shadow: 0px 1px 0px #fa501e;
+      box-shadow: 0px 1px 0px #fa501e;
+    }
+
+    @media screen and (max-width: 920px) {
+      .message {
+        width: 750px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      html,
+      body {
+        min-width: 320px;
+      }
+
+      .message {
+        width: auto;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 25px;
+      }
+
+      h2 {
+        line-height: 40px;
+      }
+    }
+  </style>
 </head>
 <body>
-	<header>
-		<h1>Successo!</h1>
-		<p class="order">Ordine creato.</p>
-		<p class="feedback">Ci metteremo in contatto con voi per pianificare la consegna.</p>
-	</header>
-	<section class="content_wrap">
-		<div class="content__data">
-			<h2 class="content__title">Volete ottenere di più?</h2>
-			<div class="mob-bg">
-				<ul class="content__list">
-					<li>Essere il primo di sapere delle innovazioni rivoluzionarie</li>
-					<li>Pagare soltanto 30% dal valore della merce</li>
-					<li>Ricevere i bonus imprevisti e regali costosi</li>
-				</ul>
-				<form action="/land/success" id="userEmail" name="user-email" method="POST">
-					<input type="text" name="email" placeholder="e-mail">
-					<button class="button submit-btn" type="submit">Ricevere <i class="button__ico-animete"></i><i class="button__ico"></i></button>
-				</form>
-				<div class="footer-content">
-					<img src="./thx/img/norton.png" alt="Norton Security">
-					<img src="./thx/img/mcAfee.png" alt="McAfee Security">
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class="modal hidden">
-		<div class="modal__content">
-			<h1>Grazie!</h1>
-			<p>Al più presto comincerete a ricevere su</p>
-			<output class="email"></output>
-			<p>le nostre offerte esclusive!</p>
-			<button type="button" class="backToLanding">Chiudere</button>
-		</div>
-	</div>
-	<script src='./thx/js/app.js'></script>
+  <div class="page">
+    <div class="message">
+      <h2>Grazie!</h2>
+      <h2>La Sua richiesta è stata effettuata con successo!</h2>
+      <h3>La richiamiamo nel primo possibile! </h3>
+      <a href="/" class="btn-back">Ritornare sul sito</a>
+    </div>
+  </div>
 </body>
 </html>
