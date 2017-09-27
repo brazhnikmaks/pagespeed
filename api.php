@@ -11,9 +11,9 @@ try{
 	$lead = $api_connector->create(array(
 		'name'			=> $_POST['name'],
 		'phone'			=> $_POST['phone'],
-		'offer_id'		=> '14491',                                                          		// Тут має бути offer_id товара, його можна знайти в ПК
-		'stream_id'		=> '12546',                                                    				// Тут, за потребою, ти можеш вказати стрім
-		'country' 		=> 'IT',                                                               	// Вказуємо код країну в форматі https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+		'offer_id'		=> '1359',                         // offer_id из ЛК
+		'stream_id'		=> '22147',                         // Optional, stream_id 
+		'country' 		=> 'RO',                            // Country in format https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 		'tz' 			=> '',
 		'address' 		=> '',
 		'utm_source'	=> isset($_GET['utm_source'])	? $_GET['utm_source'] 	: null,
@@ -29,6 +29,9 @@ try{
 		'sub_id_4'		=> isset($_GET['sub_id_4'])		? $_GET['sub_id_4'] 	: null,
 	));
 
+    if( $lead ){
+        header('Location: success.html');
+    }
 }catch (Exception $e) {
     //error handler
     echo $e->getMessage();
@@ -37,8 +40,8 @@ try{
 class CApiConnector
 {
     public $config = array(
-        'api_key' => '19494ce5468e89b2eb3e3ab4ed89c6e8',                                     		// Тут має бути api_key користувача
-        'user_id' =>  '2889',                                                              			// Тут має бути user_id користувача
+        'api_key' => '19494ce5468e89b2eb3e3ab4ed89c6e8',                                     		// api_key of user
+        'user_id' =>  '2889',                                                              		// user_id
         'create_url' => 'http://tl-api.com/api/lead/create',
         'update_url' => 'http://tl-api.com/api/lead/update',
         'status_url' => 'http://tl-api.com/api/lead/status',
@@ -52,21 +55,38 @@ class CApiConnector
         file_put_contents($logDir . strftime('%Y-%m-%d').'_orders.log', "\r\n".strftime('[%Y-%m-%d %H:%M:%S] ').json_encode($params)."\n", FILE_APPEND);
 
         $data = array(
-            'offer_id'  => $params['offer_id'],
-            'stream_id'  => $params['stream_id'],
             'user_id'   => $this->config['user_id'],
-            'name'      => $params['name'],
-            'phone'     => $params['phone'],
-            'tz'        => isset($params['tz']) ? $params['tz'] : '',
-            'address'   => isset($params['address']) ? $params['address'] : '',
-            'country'   => empty($params['country']) ? '' : $params['country'],
-            'utm_source'        => isset($params['utm_source']) ? $params['utm_source'] : '',
-            'utm_medium'        => isset($params['utm_medium']) ? $params['utm_medium'] : '',
-            'utm_campaign'      => isset($params['utm_campaign']) ? $params['utm_campaign'] : '',
-            'utm_term'          => isset($params['utm_term']) ? $params['utm_term'] : '',
-            'utm_content'       => isset($params['utm_content']) ? $params['utm_content'] : ''
         );
 
+        if( !empty($params) ){
+            $allow_params = array(
+                "name", "country", "phone", "tz", "offer_id", "stream_id", "address",
+                "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
+                "sub_id", "sub_id_1", "sub_id_2", "sub_id_3", "sub_id_4",
+            );
+
+            foreach ($params as $param_key => $param_value){
+                if( !empty($param_value) && in_array($param_key, $allow_params) ){
+                    $data[$param_key] = $param_value;
+                }
+            }
+        }
+
+        if( !isset($data['user_id']) ){
+            throw new Exception('User not set');
+        }
+
+        if( !isset($data['offer_id']) ){
+            throw new Exception('Offer not set');
+        }
+
+        if( !isset($data['name']) ){
+            throw new Exception('Name not set');
+        }
+
+        if( !isset($data['phone']) ){
+            throw new Exception('Phone not set');
+        }
 
         $data['check_sum'] = sha1(
             $this->config['user_id'] .
@@ -75,16 +95,12 @@ class CApiConnector
             $data['phone'] .
             $this->config['api_key']
         );
-
-        $url_get = http_build_query(array_filter($_GET, function($k) {
-            return $k != in_array($params[$k], array('utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'sub_id', 'sub_id_1', 'sub_id_2', 'sub_id_3', 'sub_id_4'));
-        }));
         
-        $response = self::post_request($this->config['create_url'].'?'.$url_get, json_encode($data));
+        $response = self::post_request($this->config['create_url'], json_encode($data));
 
         if( $response['http_code'] == 200 && $response['errno'] === 0 )
         {
-            header('Location: success.html');
+            return true;
         }
         else
         {
@@ -165,6 +181,3 @@ class CApiConnector
         return $response;
     }
 }
-
-
-?>
