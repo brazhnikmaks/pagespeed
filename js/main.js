@@ -1,53 +1,130 @@
-$(document).ready(function(){
-
-var site_title = "Купить FizzySlim, инструкция, цена. EcoSlim- купить в аптеке"
-
-
-
-    $('body, html').on('click', '.burger', function () {
-        $('.main_nav').toggle();
-        return false;
-    });
-
-    $('.countdown').countdown({
-        date: 24 * 60 * 60 * 1000 + new Date().valueOf(),
-        render: function(data) {
-            var el = $(this.el);
-            var new_hours = this.leadingZeros(data.hours, 2);
-            var new_min = this.leadingZeros(data.min, 2);
-            var new_sec = this.leadingZeros(data.sec, 2);
-            el.empty()
-                .append("<div><span>" + new_hours[0] + "</span><span>" + new_hours[1] + "</span></div>")
-                .append("<div><span>" + new_min[0] + "</span><span>" + new_min[1] + "</span></div>")
-                .append("<div><span>" + new_sec[0] + "</span><span>" + new_sec[1] + "</span></div>");
+(function($){
+    'use strict';
+    //Отдельном выносим языки, для более простой локализации
+    var Lang = {
+       ru: {
+            months: [  'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthsRp: [ 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'],
+            monthsPp: [ 'январе', 'феврале', 'марте', 'апреле', 'мае', 'июне', 'июле', 'августе', 'сентябре', 'октябре', 'ноябре', 'декабре'],
+            maxPurchase: 'Больше всего заказов (_COUNT_)  было  _DATE_ _MONTH_  2015 ',
+            stockInfoTitle: 'Более 100 000 продаж в',
+            stockInfoTime: 'Сроки проведения акции с _STARTDATE_ _STARTMONTH_  по _ENDDATE_ _ENDMONTH_  '
         }
-    });
-$('.toform').click(function () {
-                $("html, body").animate({scrollTop: $("form").offset().top - 300}, 1000);
-                return false;
-            });
-
-
-$(function() {
-    if (window.innerWidth > 1131) {
-    $('.bx-slider').bxSlider({
-        minSlides: 1,
-        maxSlides: 3,
-        slideWidth: 360,
-        slideMargin: 10
-    });
-    }
-    else {
-        $('.bx-slider').bxSlider({
-            minSlides: 1,
-            maxSlides: 1,
-            slideWidth: 360,
-            slideMargin: 10
+    };
+    //Объявляем класс нашего лендинга
+    var Landing = function () {
+        this.nowDate = new Date();
+         
+        //Параметры загрузки лендинга
+        this.params = {
+            lang: 'ru', //локализация
+            maxPurchase: 2419, //Максимальное кол-во покупок
+            maxPurchaseDate: 2, //Количество дней назад
+            startStockDate: 29, //Дней назад началась акция
+            endStockDate: 1, //Дней через которые акция закончится
+            lastPackTime: 15, //Секунд, через которое уменьшится количество оставшихся на складе упаковок
+            countDownDiff: Math.ceil((24*60*60)-(this.nowDate.getHours() * 60 * 60 + this.nowDate.getMinutes() * 60 + this.nowDate.getSeconds())), //Количество секунд до конца таймера
+            selectors: {
+                countDown: '.landing__countdown', //Таймер
+                maxPurcahesDate: '.landing__maxpurcashe', //Максимальное кол-во покупок
+                stockInfo: '.landing__stockinfo',
+                stockInfoTitle: '.landing__stockinfo_title',
+                lastPack: '.landing__lastpack'
+            }
+        };
+        //Стартуем таймер
+        this.initCountDown();
+        //Заполняем обман
+        //Максимальное количество покупок
+        this.initMaxPurcasheDate();
+        //Даты проведения акции
+        this.initStockInfo();
+        //Уменьшаем количество lastpack
+        this.initLastPack();
+        this.initEvents();
+    };
+    //Список ивентов лендинга
+    Landing.prototype.initEvents = function() {
+     
+       $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+            }
+            }
         });
-    }
-});
-});
-
-
+    };
+    //Уменьшаем количество last-pack
+    Landing.prototype.initLastPack = function() {
+        var _this = this;
+        var lastPackTimer = setTimeout(function() {
+            $(_this.params.selectors.lastPack).each(function (index, elem){
+                var val = parseFloat($(elem).text(), 10);
+                $(elem).html((val-1));
+            });
+        }, this.params.lastPackTime * 1000);
+    };
+    //Информация о дате проведения лендингов
+    Landing.prototype.initStockInfo = function() {
+        var lang = Lang[this.params.lang];
+        var stockTitle = lang.stockInfoTitle + lang.monthsPp[this.nowDate.getUTCMonth()];
  
+        var endStockDate = new Date(this.nowDate.getTime() + (this.params.endStockDate*24*60*60*1000));
+        var startStockDate = new Date(this.nowDate.getTime() - (this.params.startStockDate*24*60*60*1000));
+        var stockInfo = lang.stockInfoTime;
+            stockInfo = stockInfo.replace('_STARTDATE_', startStockDate.getUTCDate());
+            stockInfo = stockInfo.replace('_ENDDATE_', endStockDate.getUTCDate());
+            stockInfo = stockInfo.replace('_STARTMONTH_', lang.monthsRp[startStockDate.getMonth()]);
+            stockInfo = stockInfo.replace('_ENDMONTH_', lang.monthsRp[endStockDate.getMonth()]);
+         
+        $(this.params.selectors.stockInfoTitle).html(stockTitle);
+        $(this.params.selectors.stockInfo).html(stockInfo);
+    };
+     
+    //Максимальное количество покупок
+    Landing.prototype.initMaxPurcasheDate = function() {
+        var maxPurchaseDate = new Date(this.nowDate.getTime() - (this.params.maxPurchaseDate*24*60*60*1000));
+        var htmlString = Lang[this.params.lang].maxPurchase;
+            htmlString = htmlString.replace('_COUNT_', this.params.maxPurchase);
+            htmlString = htmlString.replace('_DATE_', maxPurchaseDate.getUTCDate());
+            htmlString = htmlString.replace('_MONTH_', Lang[this.params.lang].monthsRp[maxPurchaseDate.getUTCMonth()]);
+        $(this.params.selectors.maxPurcahesDate).html(htmlString);
+    };
+    //Таймер countdown
+    Landing.prototype.initCountDown = function() {
+        var _this = this,
+            endDate = new Date(this.nowDate.getTime() + this.params.countDownDiff * 1000);
+        var countDownTimer = setInterval( function () {
+            var diffDate = new Date(endDate.getTime() - Date.now()),
+                h = (diffDate.getHours() > 9) ? diffDate.getHours() : '0'+diffDate.getHours(),
+                m = (diffDate.getMinutes() > 9) ? diffDate.getMinutes() : '0'+diffDate.getMinutes(),
+                s = (diffDate.getSeconds() > 9) ? diffDate.getSeconds() : '0'+diffDate.getSeconds();
+            var htmlTime = '<span class="hours">'+ h +'</span>'+
+                           '<span class="minutes">'+ m +'</span>'+
+                           '<span class="seconds">'+ s +'</span>';
+            $(_this.params.selectors.countDown).html(htmlTime);
+        }, 1000);
+    };
 
+    Landing.prototype.scrollToForm = function(event) {
+        var $target = $(event.currentTarget);
+
+        $("body,html").animate({
+            scrollTop: $($target.attr("href")).offset().top
+        }, 1e3);
+        event.preventDefault();
+    };
+
+
+   
+    $(function() {
+        window.landing = new Landing();
+        $('.bxslider').bxSlider();
+    });
+    
+})(jQuery);
