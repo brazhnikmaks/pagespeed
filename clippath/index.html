@@ -13,14 +13,12 @@
 			<svg class="red-img" width="2559" height="229">
 					<image width="2559" height="229" xlink:href="red.jpg" />
 			</svg>
-			<svg>
+			<svg width="2559" height="229">
 				<defs>
-					<g>
 						<clipPath id="arrows">
 							<polygon id="arrow-left" points="1503.7,0 0,0 0,229 1503.7,229 1527,114.5"/>
 							<polygon id="arrow-right" points="1876.9,0 1854,114.5 1876.9,229 2559,229 2559,0"/>
 						</clipPath>
-					</g>
 				</defs>
 			</svg>
 		</div>
@@ -30,40 +28,38 @@
 			<svg class="red-img-1" width="2559" height="229">
 					<image width="2559" height="229" x="0" y="0" xlink:href="red.jpg" />
 			</svg>
-			<svg>
+			<svg width="2559" height="229">
 				<defs>
-					<g>
-						<clipPath id="arrows-1">
-							<polygon id="arrow-left-1" points="1503.7,0 0,0 0,229 1503.7,229 1527,114.5"/>
-							<polygon id="arrow-right-1" points="1876.9,0 1854,114.5 1876.9,229 2559,229 2559,0"/>
+					<clipPath id="arrows-1">
+						<polygon id="arrow-left-1" points="1503.7,0 0,0 0,229 1503.7,229 1527,114.5"/>
+						<polygon id="arrow-right-1" points="1876.9,0 1854,114.5 1876.9,229 2559,229 2559,0"/>
+							<animateTransform 
+								xlink:href="#arrow-left-1"
+								attributeName="transform"
+								attributeType="XML"
+								type="translate"
+								from="0"
+								to="0"
+								values="0; 20; -5; 0"
+								keyTimes="0; 0.33; 0.66; 1"
+								dur="1s"
+								begin="0s"
+								repeatCount="indefinite"
+								/>
 								<animateTransform 
-									xlink:href="#arrow-left-1"
-									attributeName="transform"
-									attributeType="XML"
-									type="translate"
-									from="0"
-									to="0"
-									values="0; 20; -5; 0"
-									keyTimes="0; 0.33; 0.66; 1"
-									dur="1s"
-									begin="0s"
-									repeatCount="indefinite"
-									/>
-									<animateTransform 
-									xlink:href="#arrow-right-1"
-									attributeName="transform"
-									attributeType="XML"
-									type="translate"
-									from="0"
-									to="0"
-									values="0; -20; 5; 0"
-									keyTimes="0; 0.33; 0.66; 1"
-									dur="1s"
-									begin="0s"
-									repeatCount="indefinite"
-									/>
-						</clipPath>
-					</g>
+								xlink:href="#arrow-right-1"
+								attributeName="transform"
+								attributeType="XML"
+								type="translate"
+								from="0"
+								to="0"
+								values="0; -20; 5; 0"
+								keyTimes="0; 0.33; 0.66; 1"
+								dur="1s"
+								begin="0s"
+								repeatCount="indefinite"
+								/>
+					</clipPath>
 				</defs>
 			</svg>
 		</div>
