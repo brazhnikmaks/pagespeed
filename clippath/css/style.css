@@ -23,8 +23,12 @@ section {
 	height: 230px;
 }
 
-.red-img {
-	position: relative;
+.red-img,
+.red-img-1 {
+	position: absolute;
+	width: 2560px;
+	height: 230px;
+	left: 0; top: 0;
 }
 
 .red-img image {
