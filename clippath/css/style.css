@@ -32,11 +32,9 @@ section {
 }
 
 .red-img image {
-	-webkit-clip-path: url(#arrows);
 	        clip-path: url(#arrows);
 }
 .red-img-1 image {
-	-webkit-clip-path: url(#arrows-1);
 	        clip-path: url(#arrows-1);
 }
 
