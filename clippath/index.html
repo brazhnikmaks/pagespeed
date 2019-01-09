@@ -4,8 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<meta name="viewport" content="width=1920">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="js/clippath.js"></script>
 </head>
 <body>
 	<section>
@@ -18,35 +19,45 @@
 						<clipPath id="arrows">
 							<polygon id="arrow-left" points="1503.7,0 0,0 0,229 1503.7,229 1527,114.5"/>
 							<polygon id="arrow-right" points="1876.9,0 1854,114.5 1876.9,229 2559,229 2559,0"/>
-							<animateTransform 
-								xlink:href="#arrow-left"
-								attributeName="transform"
-								attributeType="XML"
-								type="translate"
-								from="0"
-								to="0"
-								values="0; 20; -5; 0"
-								keyTimes="0; 0.33; 0.66; 1"
-								dur="1s"
-								begin="0s"
-								repeatCount="indefinite"
-								/>
-								<animateTransform 
-								xlink:href="#arrow-right"
-								attributeName="transform"
-								attributeType="XML"
-								type="translate"
-								from="0"
-								to="0"
-								values="0; -20; 5; 0"
-								keyTimes="0; 0.33; 0.66; 1"
-								dur="1s"
-								begin="0s"
-								repeatCount="indefinite"
-								/>
 						</clipPath>
 				</defs>
 			</svg>
+			<script>
+				if(!(HTML.className.indexOf(CLASS_SMIL_ANIM) == -1)) {
+					var ARROWS = document.getElementById('arrows');
+
+					var SMIL = "<animateTransform  \
+						xlink:href=\"#arrow-left\" \
+						attributeName=\"transform\" \
+						attributeType=\"XML\" \
+						type=\"translate\" \
+						from=\"0\" \
+						to=\"0\" \
+						values=\"0; 20; -5; 0\" \
+						keyTimes=\"0; 0.33; 0.66; 1\" \
+						dur=\"1s\" \
+						begin=\"0s\" \
+						repeatCount=\"indefinite\" \
+						fill=\"freeze\" \
+					/> \
+					<animateTransform  \
+						xlink:href=\"#arrow-right\" \
+						attributeName=\"transform\" \
+						attributeType=\"XML\" \
+						type=\"translate\" \
+						from=\"0\" \
+						to=\"0\" \
+						values=\"0; -20; 5; 0\" \
+						keyTimes=\"0; 0.33; 0.66; 1\" \
+						dur=\"1s\" \
+						begin=\"0s\" \
+						repeatCount=\"indefinite\" \
+						fill=\"freeze\" \
+					/>";
+
+					ARROWS.innerHTML += SMIL;
+				}
+			</script>
 		</div>
 	</section>
 </body>

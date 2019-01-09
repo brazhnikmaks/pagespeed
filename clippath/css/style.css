@@ -23,8 +23,7 @@ section {
 	height: 230px;
 }
 
-.red-img,
-.red-img-1 {
+.red-img {
 	position: absolute;
 	width: 2560px;
 	height: 230px;
@@ -34,16 +33,12 @@ section {
 .red-img image {
 	        clip-path: url(#arrows);
 }
-.red-img-1 image {
-	        clip-path: url(#arrows-1);
-}
 
-
-#arrow-left{
+.css-animated #arrow-left{
 	-webkit-animation: 1s shake infinite;
 	        animation: 1s shake infinite;
 }
-#arrow-right{
+.css-animated #arrow-right{
 	-webkit-animation: 1s shakeRev infinite;
 	        animation: 1s shakeRev infinite;
 }
